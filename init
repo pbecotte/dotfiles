@@ -1,0 +1,7 @@
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+brew install git
+brew cask install pycharm
+brew cask install docker
+brew cask install slack
+brew cask install gitkraken
+brew cask install virtualbox
