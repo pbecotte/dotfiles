@@ -4,3 +4,4 @@ brew install bash-completion
 brew cask install pycharm
 brew cask install docker
 brew cask install slack
+brew cask install virtualbox  # Still need vb to use docker-machine in pycharm
