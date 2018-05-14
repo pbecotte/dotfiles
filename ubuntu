@@ -1,15 +1,22 @@
 # Install
-sudo -i
-apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
-echo deb https://apt.dockerproject.org/repo ubuntu-xenial main > /etc/apt/sources.list.d/docker.list
-apt-get update
-apt-get install linux-image-extra-$(uname -r) linux-image-extra-virtual curl make
-apt-get install docker-engine
-curl -L "https://github.com/docker/compose/releases/download/1.8.1/docker-compose-$(uname -s)-$(uname -m)" > /usr/local/bin/docker-compose
-usermod -aG docker pbecotte
-chmod +x /usr/local/bin/docker-compose
-curl -L https://raw.githubusercontent.com/docker/compose/$(docker-compose version --short)/contrib/completion/bash/docker-compose > /etc/bash_completion.d/docker-compose
-service docker start
+sudo apt-get update
+sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+sudo apt-get update
+sudo apt-get install docker-ce
+sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+sudo usermod -aG docker pbecotte
+sudo chmod +x /usr/local/bin/docker-compose
+sudo curl -L https://raw.githubusercontent.com/docker/compose/1.21.2/contrib/completion/bash/docker-compose -o /etc/bash_completion.d/docker-compose
+sudo service docker start
 
 # SSH Keys
 ssh-keygen -t rsa -C "pjbecotte@gmail.com"
@@ -23,4 +30,3 @@ export PS1='\[\e[0;33m\]\w\[\e[0;36m\]$(__git_ps1)\$  \[\e[0m\]'
 
 # ~/.profile
 . /home/pbecotte/.bashrc
-
